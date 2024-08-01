@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download Multiple Images</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.0.0/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .downloadable-image {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="max-w-4xl w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 p-4">
+        <!-- Images that trigger download -->
+        <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+            <img id="image1" class="w-full h-48 object-cover downloadable-image" src="imges/1.png" alt="Image 1">
+        </div>
+        <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+            <img id="image2" class="w-full h-48 object-cover downloadable-image" src="imges/2.png" alt="Image 1">
+        </div>
+        <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+            <img id="image3" class="w-full h-48 object-cover downloadable-image" src="imges/3.png" alt="Image 3">
+        </div>
+        <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+            <img id="image4" class="w-full h-48 object-cover downloadable-image" src="imges/4.png" alt="Image 4">
+        </div>
+        <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+            <img id="image5" class="w-full h-48 object-cover downloadable-image" src="imges/5.png" alt="Image 5">
+        </div>
+    </div>
+
+    <script>
+        // Array of images with corresponding filenames
+        const images = [
+            { id: 'image1', url: 'imges/1.png', filename: 'image1.jpg' },
+            { id: 'image2', url: 'imges/2.png', filename: 'image2.jpg' },
+            { id: 'image3', url: 'imges/3.png', filename: 'image3.jpg' },
+            { id: 'image4', url: 'imges/4.png', filename: 'image4.jpg' },
+            { id: 'image5', url: 'imges/5.png', filename: 'image5.jpg' }
+        ];
+
+        // Add click event listeners to each image
+        images.forEach(image => {
+            document.getElementById(image.id).addEventListener('click', function () {
+                const link = document.createElement('a');
+                link.href = image.url;
+                link.download = image.filename;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            });
+        });
+    </script>
+</body>
+</html>
